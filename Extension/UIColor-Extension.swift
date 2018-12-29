@@ -5,13 +5,15 @@
 
 import Foundation
 import UIKit
+
+enum XHFontType {
+    case semi
+    case regular
+    case bold
+    case none
+}
 enum XHFont {
-    enum XHFontType {
-        case semi
-        case regular
-        case bold
-        case none
-    }
+    
     case PF
     case LT
     static func jfFont(aiPt: CGFloat) -> UIFont {
@@ -30,15 +32,6 @@ enum XHFont {
         case .none :break
         }
         var newSize = size
-        if AI { newSize = size.V()}
-//        if MAINHEIGHT < 375 {     //6以下，大字体需要缩小
-//            if newSize > 24 {
-//                newSize = newSize - 2
-//                if newSize > 40 {
-//                    newSize = newSize - 2
-//                }
-//            }
-//        }
         return UIFont.font(name: fontName, pixel: newSize)
     }
 }
@@ -79,55 +72,13 @@ extension UIFont {
     }
     
      static func font(name:String,pixel:CGFloat) -> UIFont {
-//        for i in UIFont.familyNames {
-//            print("----font family:\(i)")
-//            for o in UIFont.fontNames(forFamilyName: i) {
-//                print(o)
-//            }
-//        }
         if #available(iOS 9.0, *){
             return UIFont.init(name: name, size: MAINHEIGHT == 320 ? pixel - CGFloat(2) : pixel)!
             
         }
         return UIFont.pixelFont(pixel: pixel)
     }
-//    static func num36() -> UIFont{
-//        return XHFont.DIN.font(type: .bold, size: 36)
-////        return self.font(name: "DINCondensed-Bold", pixel: 36)
-//    }
-//    static func num24() -> UIFont{
-//        return XHFont.DIN.font(type: .bold, size: 24)
-////        return self.font(name: "DINCondensed-Bold", pixel: 24)
-//    }
-//    static func text24() -> UIFont{
-//        return XHFont.PF.font(type: .semi, size: 24)
-////        return self.font(name: "PingFangSC-Semibold", pixel: 24)
-//    }
-//    static func textTitle18() -> UIFont{
-//        return XHFont.PF.font(type: .semi, size: 18)
-////        return self.font(name: "PingFangSC-Semibold", pixel: 18)
-//    }
-//    static func text18() -> UIFont{
-//        return XHFont.PF.font(type: .regular, size: 18)
-////        return self.font(name: "PingFangSC-Regular", pixel: 18)
-//    }
-//    static func text16() -> UIFont{
-//        return XHFont.PF.font(type: .semi, size: 16)
-////        return self.font(name: "PingFangSC-Semibold", pixel: 16)
-//    }
-//    static func text14() -> UIFont{
-//        return XHFont.PF.font(type: .regular, size: 14)
-////        return self.font(name: "PingFangSC-Regular", pixel: 14)
-//    }
-//    static func text14Semi() -> UIFont{
-//        return XHFont.PF.font(type: .semi, size: 14)
-////        return self.font(name: "PingFangSC-Semibold", pixel: 14)
-//    }
-//    
-//    static func text12() -> UIFont{
-//        return XHFont.PF.font(type: .regular, size: 12)
-////        return self.font(name: "PingFangSC-Regular", pixel: 12)
-//    }
+
 }
 //MARK:-扩展view的颜色
 extension UIView {
