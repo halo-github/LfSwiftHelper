@@ -16,7 +16,11 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LfSwiftHelper"
+<<<<<<< HEAD
   s.version      = "0.0.1"
+=======
+  s.version      = "0.0.3"
+>>>>>>> a880ac39bd249bf094ff61a92b4330dddcae9ce5
   s.summary      = "a Swift coding helper."
 
   # This description is used to generate tags and improve search results.
@@ -92,15 +96,27 @@ Pod::Spec.new do |s|
   #
 	
   
+<<<<<<< HEAD
   #s.source_files  = "**/*.swift"
+=======
+  #s.source_files  = "Classes", "Classes/**/*.{h,m}"
+>>>>>>> a880ac39bd249bf094ff61a92b4330dddcae9ce5
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
   s.subspec "Protocol" do |protocol| 
 	protocol.source_files = 'Protocol/**/*.swift'
   end
+<<<<<<< HEAD
 """
 """
+=======
+  s.subspec "Extension" do |extension| 
+	extension.source_files = 'Extension/**/*.swift'
+  end
+
+
+>>>>>>> a880ac39bd249bf094ff61a92b4330dddcae9ce5
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
@@ -141,11 +157,19 @@ Pod::Spec.new do |s|
   
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
+<<<<<<< HEAD
   #s.dependency 'Reachability'
   #s.dependency 'SnapKit'
   #s.dependency 'MBProgressHUD'
   #s.dependency 'Kingfisher'
   #s.dependency 'MBProgressHUD'
+=======
+  s.dependency 'Reachability'
+  s.dependency 'SnapKit'
+  s.dependency 'MBProgressHUD'
+  s.dependency 'Kingfisher'
+  s.dependency 'MBProgressHUD'
+>>>>>>> a880ac39bd249bf094ff61a92b4330dddcae9ce5
   s.swift_version = '4.2'
 
 end
