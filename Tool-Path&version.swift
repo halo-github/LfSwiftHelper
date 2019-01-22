@@ -15,7 +15,7 @@ let libPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomain
 
 let bundleVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
 func appStoreVersion(ID: String, updateHandler: @escaping (Bool) -> Void ){    
-    let url = URL.init(string: "http://itunes.apple.com/lookup?id=\(ID)")
+    let url = URL.init(string: "http://itunes.apple.com/lookup?id=\(appID)")
     let request = NSMutableURLRequest.init(url: url!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
         request.httpMethod = "POST"
         URLSession.shared.dataTask(with: request as URLRequest) { data, response, err in

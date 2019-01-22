@@ -263,7 +263,15 @@ extension UIView {
             view.alpha = alpha
         return view
     }
+   
     
+     @objc public func removeWithSuperView() {
+        if let sup = self.superview  {
+            if  sup.subviews.count == 1 {
+                    sup.removeFromSuperview()
+            }
+        }
+    }
 //    func addBottomLine(space: CGFloat = 0) {
 //        let line = UIView.color(.gray)
 //        line.frame = CGRect.init(x: 0, y: self.frame.height - 1, width: self.width() - space, height: 1)

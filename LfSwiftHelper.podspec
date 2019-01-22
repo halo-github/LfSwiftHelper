@@ -1,4 +1,4 @@
-#
+#####
 #  Be sure to run `pod spec lint LfSwiftHelper.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LfSwiftHelper"
-  s.version      = "0.0.3"
+  s.version      = "0.1"
   s.summary      = "A short description of LfSwiftHelper."
 
   # This description is used to generate tags and improve search results.
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MI"
+  s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -105,7 +105,7 @@ Pod::Spec.new do |s|
   end
   #s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
+   s.public_header_files = "./**/*.swift", "*.swift"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

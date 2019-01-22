@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import CommonCrypto    
 import SystemConfiguration.CaptiveNetwork
 class LF_Info {
@@ -21,24 +20,24 @@ class LF_Info {
     
     //网络信息：网关，ssid（wifi名称）
     
-    static func netInfo() -> String{
+    static func wifiSSID() -> String{
 
         var wifi: String = ""
+        //网关数组
         if let cfArr = CNCopySupportedInterfaces() {
 //            print("网关：\(cfArr)")
             if let ptr = CFArrayGetValueAtIndex(cfArr, 0) {
-
+                
                 if let cfStr = unsafeBitCast(ptr, to: CFString.self) as? CFString {
-                    if let dic = CFBridgingRetain(CNCopyCurrentNetworkInfo(cfStr)) {
-                        print(dic)
-                    }
+//  CNCopyCurrentNetworkInfo在iOS 12+， 需要将 access Wifi infomation 打开
                     if let  dic = CNCopyCurrentNetworkInfo(cfStr) {
-                        print(dic)
+//                        print(dic)
                         let key = Unmanaged.passRetained("SSID" as NSString).toOpaque()
 
                         let ssid = CFDictionaryGetValue(dic, key)
                         let name = Unmanaged<NSString>.fromOpaque(ssid!)
                         wifi = name.takeUnretainedValue() as String
+//                        print(wifi)
                     }
 //
 

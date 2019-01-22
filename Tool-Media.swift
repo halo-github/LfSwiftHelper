@@ -34,15 +34,21 @@ enum SystemSound: SystemSoundID {
 class lf_VideoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        NotificationCenter.default.addObserver(self, selector: #selector(playEnded), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func mp4(frame: CGRect, url: URL) -> lf_VideoView {
+        let view = lf_VideoView.init(frame: frame)
+            view.videoUrl = url
+        return view
     }
     var player: AVPlayer?
     let avLayer = AVPlayerLayer()
     var videoUrl: URL = URL.init(string: "abc")! {
         willSet {
-//            let url = URL.init(fileURLWithPath: newValue)
             player =  AVPlayer.init(url: newValue)
                 avLayer.frame = self.bounds
                 avLayer.player = player
@@ -53,4 +59,21 @@ class lf_VideoView: UIView {
         }
     }
     
+    var repeatTimes: Int = 1
+    var times: Int = 0
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    @objc func playEnded() {
+        times = times + 1
+        if times != repeatTimes {
+            player?.seek(to: CMTime.init(value: 0, timescale: 1))
+            player?.play()
+            
+        }
+    }
 }

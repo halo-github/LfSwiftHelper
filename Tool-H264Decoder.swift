@@ -9,7 +9,6 @@
 import Foundation
 import VideoToolbox
 
-typealias u8 = UInt8
 
 protocol H264DisplayDelegate {
     func sampleDisplay(sample: CMSampleBuffer)

@@ -4,7 +4,6 @@
 //
 import UIKit
 import Foundation
-import SnapKit
 class GifPlayer: UIImageView {
 //    static let shared = GifPlayer.init(frame: .zero)
     var images: [UIImage] = [UIImage]()

@@ -19,6 +19,10 @@ class JsonTool {
         }
         return nil
     }
+    
+//    static func json(data:Data, options:JSONSerialization.ReadingOptions = []){
+//        JSONSerialization.jsonObject(with: data, options: options)
+//    }
 }
 
 extension Dictionary where Key == String {

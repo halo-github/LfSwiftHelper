@@ -88,11 +88,32 @@ class NetTool {
 }
 
 extension URLRequest {
+    
+    enum RequestMothod: String {
+        case get = "GET"
+        case post = "POST"
+        case put = "PUT"
+        case delete = "DELETE"
+        case head = "HEAD"
+    }
+    
     static func request(urlStr: String, paras: [String: String]) -> URLRequest{
         let body = paras.map{"\($0)=\($1)"}.joined(separator: "&")
         var request = URLRequest.init(url: URL.init(string: urlStr)!)
             request.httpMethod = "POST"
             request.httpBody = body.data(using: .utf8)
+        return request
+    }
+    
+    
+    static func method(_ r: RequestMothod, url: URL, paras: [String: Any] = [:]) -> URLRequest {
+        var request = URLRequest.init(url: url)
+            request.httpMethod = r.rawValue
+        
+        if r == RequestMothod.post {
+            let body = paras.map{"\($0)=\($1)"}.joined(separator: "&")
+            request.httpBody = body.data(using: .utf8)
+        }
         return request
     }
 }

@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import UIKit
-import MBProgressHUD
 extension UIWindow {
     static func topViewController() -> UIViewController? {
         var top = UIApplication.shared.delegate?.window??.rootViewController
@@ -24,7 +22,6 @@ extension UIWindow {
         let back = UIView.color(UIColor.black.withAlphaComponent(0.5))
         DispatchQueue.main.async {
             if let window = UIApplication.shared.keyWindow {
-                
                 back.frame = window.bounds
                 window.addSubview(back)
                 v.frame = CGRect.init(center: window.center, size: v.frame.size)
@@ -163,3 +160,6 @@ extension UIWindow {
         VC!.present(alert, animated: true, completion: nil)
     }
 }
+
+
+

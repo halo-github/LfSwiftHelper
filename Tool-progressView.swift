@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol ProgressAnimation {
     var interval: TimeInterval { get }

@@ -41,3 +41,6 @@ func dicToHttpBody(dic: [String: String]) -> String{
     return dic.map{"\($0)=\($1)"}.joined(separator: "&")
 }
 
+
+
+

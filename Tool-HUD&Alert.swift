@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
-import MBProgressHUD
 //MARK:- Alert
 extension UIAlertController {
     static func Alert(title:String,msg: String = "",okHandle:(() ->Void)?) ->Void {

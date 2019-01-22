@@ -32,6 +32,7 @@ enum XHFont {
         case .none :break
         }
         var newSize = size
+        if AI { newSize = size.V()}
         return UIFont.font(name: fontName, pixel: newSize)
     }
 }
