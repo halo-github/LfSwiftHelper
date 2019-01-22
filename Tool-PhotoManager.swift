@@ -214,7 +214,7 @@ public class PhotoManager: NSObject {
         
     }
     
-    public @objc func save( video: String ) {
+     @objc public func save( video: String ) {
 //        let urlAsset = AVURLAsset.init(url: URL.init(fileURLWithPath: video))
         try? PHPhotoLibrary.shared().performChangesAndWait {
             let assertRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL.init(fileURLWithPath: video))  //图片请求

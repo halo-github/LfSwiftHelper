@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CommonCrypto    
 import SystemConfiguration.CaptiveNetwork
 public class LF_Info {

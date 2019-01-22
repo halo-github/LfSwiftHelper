@@ -9,19 +9,20 @@
 import Foundation
 import VideoToolbox
 
+typealias u8 = UInt8
 
 public protocol H264DisplayDelegate {
-    public func sampleDisplay(sample: CMSampleBuffer)
-    public func cvimageDisplay(cvImage: CVImageBuffer)
+    func sampleDisplay(sample: CMSampleBuffer)
+    func cvimageDisplay(cvImage: CVImageBuffer)
 }
 
 public protocol H264WriteDelegate {
-    public func write(sample: CMSampleBuffer)
+    func write(sample: CMSampleBuffer)
 }
 
 
-public  H264Decoder {
-    static let shared = H264Decoder()
+public class  H264Decoder {
+    public static let shared = H264Decoder()
     var description: CMVideoFormatDescription?
     var session: VTDecompressionSession?
     var spsLen = 0

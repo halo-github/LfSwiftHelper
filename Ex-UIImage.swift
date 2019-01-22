@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 public extension UIImage {
     public static func image(rect:CGRect,color:UIColor) -> UIImage{
         UIGraphicsBeginImageContext(rect.size)

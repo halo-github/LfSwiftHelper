@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 public extension UIScrollView {
     
     public func show(images: [String]) {

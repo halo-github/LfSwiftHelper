@@ -11,7 +11,7 @@ import UIKit
 //原理：由于swift扩展不能添加存储属性，所以考虑以计算属性获取另一对象的存储属性，该对象通过动态绑定给原对象
 //创建协议 包含中间对象，两个用于绑定的key
 public protocol LFassociateObject {
-   public var newInstance: AnyObject {get}
+   var newInstance: AnyObject {get}
 //    static var key:UnsafeRawPointer { get }       //key不要用String类型
 }
 //创建空类，用于生成中间对象

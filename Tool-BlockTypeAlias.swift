@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 public typealias VoidHandler = ()->Void
 public typealias ImageHandler = (_ image: UIImage) -> Void
 public typealias VideoHandler = (_ url: URL) -> Void

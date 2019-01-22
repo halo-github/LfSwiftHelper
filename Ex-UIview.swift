@@ -237,14 +237,10 @@ public extension UIView {
             make.bottom.equalToSuperview()
         }
     }
-}
 
-public func scale6(_ f:CGFloat) -> CGFloat {
-    return f * scale6
-}
 
-public extension UIView {
-    
+
+
     public static func white() -> UIView {
         let view = UIView()
         view.backgroundColor = .white
@@ -265,7 +261,7 @@ public extension UIView {
     }
    
     
-     public @objc public func removeWithSuperView() {
+     @objc public func removeWithSuperView() {
         if let sup = self.superview  {
             if  sup.subviews.count == 1 {
                     sup.removeFromSuperview()
@@ -305,3 +301,6 @@ public extension UIView {
 }
 
 
+    public func scale6(_ f:CGFloat) -> CGFloat {
+        return f * scale6
+}

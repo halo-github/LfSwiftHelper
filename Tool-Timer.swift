@@ -6,8 +6,8 @@
 //  Copyright © 2018年 liufeng. All rights reserved.
 //
 
-typealias IntHandler = (Int)->Void
-typealias DoubleHandler = (Double)->Void
+public typealias IntHandler = (Int)->Void
+public typealias DoubleHandler = (Double)->Void
 
 import Foundation
 

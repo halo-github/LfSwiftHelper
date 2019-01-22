@@ -10,6 +10,7 @@ import Foundation
 import CoreTelephony
 import RxSwift
 import Reachability
+import UIKit
 public class NetTool {
     public static let shared = NetTool()
 //    static let internetOb = Reachability.forInternetConnection()
