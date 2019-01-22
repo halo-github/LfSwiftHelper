@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-extension UITextView {
+public extension UITextView {
     
     /// 跳转到指定文本
     ///
     /// - Parameter text: 
-    func scrollTextTotop(_ text: String) {
+    public func scrollTextTotop(_ text: String) {
 //        self.scrollRangeToVisible(self.attributedText.string.nsRange(of: text))
         let textRange = self.textRange(of: text)
         let rect = self.caretRect(for: textRange.start)
@@ -24,7 +24,7 @@ extension UITextView {
     }
     
     
-    func textRange(of: String) -> UITextRange {
+    public func textRange(of: String) -> UITextRange {
     
         let nsRange = self.text.nsRange(of: of)
         let beginning = self.beginningOfDocument
@@ -34,14 +34,14 @@ extension UITextView {
         return self.textRange(from: start!, to: end!)!
     }
     
-    func currentTextRect() -> CGRect {
+    public func currentTextRect() -> CGRect {
         self.superview?.layoutIfNeeded()
         let offSet = self.contentOffset
         let rect = CGRect.init(x: offSet.x, y: offSet.y, width: self.bounds.width, height: self.bounds.height)
         return rect
     }
     
-    func rectOf(textRange: UITextRange) -> CGRect{
+    public func rectOf(textRange: UITextRange) -> CGRect{
 //        let textRange = self.textRange(of: str)
         self.superview?.layoutIfNeeded()
         let startRect = self.caretRect(for: textRange.start)

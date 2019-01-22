@@ -17,8 +17,8 @@ extension Array where Element: NSObject {
 
 
 
-extension Array where Element : UIView {
-    func  equalLayoutHorizon(on : UIView, autoSize: Bool = true) {
+public extension Array where Element : UIView {
+   public func  equalLayoutHorizon(on : UIView, autoSize: Bool = true) {
         on.layoutIfNeeded()
         self.enumerated().forEach { (idx, view) in
                         view.lf_sup_divideXY(view: on, YdividedBy: 1, Yindex: 0, XdividedBy: self.count, Xindex: idx,
@@ -29,7 +29,7 @@ extension Array where Element : UIView {
     
 //    在指定矩形内等距排列
     
-    func suibian(on: UIView, equalSize: CGSize = CGSize.init(width: -1, height: -1)) {
+   public func suibian(on: UIView, equalSize: CGSize = CGSize.init(width: -1, height: -1)) {
         on.layoutIfNeeded()
         
         var arr = self
@@ -59,7 +59,7 @@ extension Array where Element : UIView {
     
     
     
-    func  equalLayoutVertical(on : UIView, autoSize: Bool = true) {
+   public func  equalLayoutVertical(on : UIView, autoSize: Bool = true) {
         on.layoutIfNeeded()
         self.enumerated().forEach { (idx, view) in
             view.lf_sup_divideXY(view: on, YdividedBy: self.count, Yindex: idx, XdividedBy: 1, Xindex: 0 ,
@@ -70,7 +70,7 @@ extension Array where Element : UIView {
     
 }
 
-extension Array where Element: UIButton {
+public extension Array where Element: UIButton {
     func selectTap(r:@escaping (_ it: Int)->Void)  {
         self.enumerated().forEach { (idx,btn) in
             btn.rx.tap.throttle(0.5, scheduler: MainScheduler.instance).subscribe({ (_) in
@@ -90,8 +90,8 @@ extension Array where Element: UIButton {
 }
 
 
-extension Array where Element: Equatable {
-    mutating func remove(object: Element) {
+public extension Array where Element: Equatable {
+   public mutating func remove(object: Element) {
         if let idx = self.index(of: object) {
             self.remove(at: idx)
         }
@@ -108,17 +108,17 @@ extension Array where Element: Equatable {
     
     
     
-    mutating func rx_append(_ element: Element,countoOb: PublishSubject<Int>) {
+    public mutating func rx_append(_ element: Element,countoOb: PublishSubject<Int>) {
         self.append(element)
         countoOb.onNext(self.count)
     }
     
-    mutating func rx_remove(element: Element, countoOb: PublishSubject<Int>)  {
+    public mutating func rx_remove(element: Element, countoOb: PublishSubject<Int>)  {
         self.remove(object: element)
         countoOb.onNext(self.count)
     }
     
-    mutating func rx_removeAll(countoOb: PublishSubject<Int>) {
+    public mutating func rx_removeAll(countoOb: PublishSubject<Int>) {
         self.removeAll()
         countoOb.onNext(0)
     }

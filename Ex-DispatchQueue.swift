@@ -7,9 +7,9 @@
 //
 
 import Foundation
-extension DispatchQueue {
+public extension DispatchQueue {
     private static var oneToken: [String] = [String]()
-    static func once(once: String, block:()->Void) {
+    public static func once(once: String, block:()->Void) {
         //     保证被 objc_sync_enter 和 objc_sync_exit 包裹的代码可以有序同步地执行
         objc_sync_enter(self)
         defer {

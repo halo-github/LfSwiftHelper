@@ -6,20 +6,20 @@
 import Foundation
 import UIKit
 
-enum XHFontType {
+public enum XHFontType {
     case semi
     case regular
     case bold
     case none
 }
-enum XHFont {
+public enum XHFont {
     
     case PF
     case LT
     static func jfFont(aiPt: CGFloat) -> UIFont {
         return XHFont.LT.font(type: .none, size: aiPt)
     }
-    func font(type:XHFontType,size:CGFloat) -> UIFont {
+   public func font(type:XHFontType,size:CGFloat) -> UIFont {
         var fontName = ""
         switch self {
         case .LT:fontName = "FZLanTingHei-L-GBK"
@@ -32,13 +32,13 @@ enum XHFont {
         case .none :break
         }
         var newSize = size
-//        if AI { newSize = size.V()}
+        if AI { newSize = size.V()}
         return UIFont.font(name: fontName, pixel: newSize)
     }
 }
 
 
-extension UIColor {
+public extension UIColor {
    class func hex(_ hexString:String) -> UIColor {
     guard hexString.hasPrefix("#"), hexString.count == 7 else {
         return UIColor.purple
@@ -52,13 +52,13 @@ extension UIColor {
                        blue: CGFloat(hex & 0x0000FF) / 255.0,
                        alpha: 1.0)
     }
-    class func randomColor() -> UIColor{
+    public class func randomColor() -> UIColor{
         return self.init(red:(CGFloat(arc4random()%255)/255.0),
                          green:(CGFloat(arc4random()%255)/255.0),
                          blue:(CGFloat(arc4random()%255)/255.0),
                          alpha:1)
     }
-    static func rgb(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 1) -> UIColor {
+    public static func rgb(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 1) -> UIColor {
         return UIColor.init(red: r/255, green: g/255, blue: b/255, alpha: a)
     }
 
@@ -66,13 +66,13 @@ extension UIColor {
 
 
 
-extension UIFont {
-   private static func pixelFont(pixel:CGFloat)->UIFont {
+public extension UIFont {
+   public static func pixelFont(pixel:CGFloat)->UIFont {
     
     return UIFont.systemFont(ofSize: MAINHEIGHT == 320 ? pixel - CGFloat(2) : pixel)
     }
     
-     static func font(name:String,pixel:CGFloat) -> UIFont {
+    public static func font(name:String,pixel:CGFloat) -> UIFont {
         if #available(iOS 9.0, *){
             return UIFont.init(name: name, size: MAINHEIGHT == 320 ? pixel - CGFloat(2) : pixel)!
             
@@ -82,8 +82,8 @@ extension UIFont {
 
 }
 //MARK:-扩展view的颜色
-extension UIView {
-     func setGradColorVIew(cgColors:[CGColor]) {
+public extension UIView {
+    public func setGradColorVIew(cgColors:[CGColor]) {
         let gradientlayer = CAGradientLayer.init()
         gradientlayer.frame = self.bounds
         self.layer.addSublayer(gradientlayer)

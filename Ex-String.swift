@@ -9,18 +9,18 @@ import CommonCrypto
 
 
 
-extension NSAttributedString {
-    func newNSAttributedString(color:UIColor) -> NSAttributedString {
+public extension NSAttributedString {
+   public func newNSAttributedString(color:UIColor) -> NSAttributedString {
         let new : NSMutableAttributedString = NSMutableAttributedString.init(attributedString: self)
         new.addAttribute(.foregroundColor, value: color, range: NSMakeRange(0, self.length))
         return new as NSAttributedString
     }
     
     //下划线
-    func fullUnderline() -> NSAttributedString {
+   public func fullUnderline() -> NSAttributedString {
         return self.underLineStr(range: NSRange.init(location: 0, length: self.length))
     }
-    func underLineStr(range: NSRange) -> NSAttributedString {
+   public func underLineStr(range: NSRange) -> NSAttributedString {
         let new : NSMutableAttributedString = NSMutableAttributedString.init(attributedString: self)
         new.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: range)
         return new as NSAttributedString
@@ -29,26 +29,26 @@ extension NSAttributedString {
     
     
 }
-extension String {
+public extension String {
     //获取NSRange
-    func nsRange(of: String) -> NSRange{
+   public func nsRange(of: String) -> NSRange{
         return (self as NSString).range(of:of)
 //        let range = self.range(of: of)
 //        return  NSRange(range!, in: self)
     }
     //本地化
-    func localize() -> String {
+   public func localize() -> String {
         return NSLocalizedString(self, comment: "")
     }
     
-   static func dateStr(date: Date = Date()) -> String {
+   public static func dateStr(date: Date = Date()) -> String {
         let format = DateFormatter()
             format.dateFormat = "yyyyMMddHHss"
         return format.string(from:date)
     }
     
     //MD5
-    func md5()->String {
+    public func md5()->String {
         let md5Len = Int(CC_MD5_DIGEST_LENGTH)
         print(md5Len)
         let cStr = self.cString(using: .utf8)
@@ -61,7 +61,7 @@ extension String {
         return md5Str
     }
     //字间距
-    func wordSpace(_ s: CGFloat) -> NSAttributedString {
+    public func wordSpace(_ s: CGFloat) -> NSAttributedString {
         return NSAttributedString.init(string: self, attributes: [NSAttributedString.Key.kern: s])
         
     }
@@ -75,7 +75,7 @@ extension String {
 //    }
     
     //复杂文字
-    static func complexAttrString(arr:[[String:[NSAttributedString.Key: Any]]]) -> NSAttributedString{
+    public static func complexAttrString(arr:[[String:[NSAttributedString.Key: Any]]]) -> NSAttributedString{
         let attrStr = NSMutableAttributedString()
         for dic in arr {
             attrStr.append(NSAttributedString.init(string: dic.keys.first!, attributes: dic.values.first!))
@@ -143,7 +143,7 @@ extension String {
 //}
 
 
-func filePath(name:String,extend: String) -> String? {
+public func filePath(name:String,extend: String) -> String? {
     return Bundle.main.path(forResource: name, ofType: extend)
 }
 

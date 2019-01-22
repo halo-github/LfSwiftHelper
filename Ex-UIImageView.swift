@@ -15,12 +15,12 @@
 import Foundation
 import UIKit
 
-extension UIImageView {
+public extension UIImageView {
     
-    static func name(_ n: String) -> UIImageView {
+    public static func name(_ n: String) -> UIImageView {
         return UIImageView.init(image: UIImage.init(named: n))
 }
-    static func aspectAscale(name: String) -> UIImageView {
+    public static func aspectAscale(name: String) -> UIImageView {
         let i = UIImageView.name(name)
         i.contentMode = .scaleAspectFit
         i.clipsToBounds = false
@@ -32,7 +32,7 @@ extension UIImageView {
     
 }
 
-extension UIImage {
+public extension UIImage {
     func resizeImage() -> UIImage{
         let ww = self.size.width/2
         let hh = self.size.height/2
@@ -42,13 +42,13 @@ extension UIImage {
 }
 
 
-enum ImageShiftType {
+public enum ImageShiftType {
     case swipeLeft
     case swipeRight
     case tapRight
 }
 
-class SwipeImageView: UIImageView {
+public class SwipeImageView: UIImageView {
     var imageNames: [String]?
     var images: [UIImage]?
     var currentIdx: Int = 0
@@ -64,7 +64,7 @@ class SwipeImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func config(type:ImageShiftType) {
+    public func config(type:ImageShiftType) {
         switch type {
         
         case .swipeLeft:
@@ -81,10 +81,10 @@ class SwipeImageView: UIImageView {
         }
     }
     
-    func endHandler(_ r :@escaping VoidHandler) {
+   public func endHandler(_ r :@escaping VoidHandler) {
         
     }
-    @objc public func swipeLeft() {
+    @objc func swipeLeft() {
 //      self.contentMode = .scaleAspectFit
 //        let ani = CATransition.init()
 //        ani.duration = 0.5
@@ -113,7 +113,7 @@ class SwipeImageView: UIImageView {
         }
     }
     
-    @objc public func swipeRight() {
+    @objc func swipeRight() {
         if currentIdx == 0 { return}
         let ani = CATransition.init()
         ani.duration = 0.5

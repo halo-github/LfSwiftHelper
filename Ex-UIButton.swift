@@ -10,9 +10,9 @@ import Foundation
 import RxCocoa
 import RxSwift
 import SnapKit
-extension UIButton {
+public extension UIButton {
     
-    static func sizedImageButton(imageName:String,size: CGSize) -> UIButton {
+   public static func sizedImageButton(imageName:String,size: CGSize) -> UIButton {
             let btn = UIButton.init(type: .custom)
         let imageV = UIImageView.init(image: UIImage.init(named: imageName))
         imageV.isUserInteractionEnabled = false
@@ -55,13 +55,13 @@ extension UIButton {
     
     
     
-    static func defaultBtn() -> UIButton {
+   public static func defaultBtn() -> UIButton {
         let btn = UIButton.init(type: .custom)
         btn.sizeToFit()
         return btn
     }
     //文字按钮
-    static func titleButton(_ title:String) -> UIButton {
+   public static func titleButton(_ title:String) -> UIButton {
         let btn = UIButton.defaultBtn()
         btn.setTitle(title, for: .normal)
         btn.setTitleColor(UIColor.white, for: .normal)
@@ -73,7 +73,7 @@ extension UIButton {
     
     //设置标题颜色
     //纯图按钮
-    static func imageButton(_ image:String) -> UIButton {
+   public static func imageButton(_ image:String) -> UIButton {
         let img = UIImage.init(named: image)
         let btn = defaultBtn()
             btn.setImage(img, for: .normal)
@@ -81,22 +81,22 @@ extension UIButton {
     }
     
     
-    func title(_ t: String, state: UIControl.State = .normal) -> UIButton {
+    public func title(_ t: String, state: UIControl.State = .normal) -> UIButton {
         self.setTitle(t, for: state)
         return self
     }
     
-    func titleColor(_ c: UIColor, state: UIControl.State = .normal) -> UIButton {
+    public func titleColor(_ c: UIColor, state: UIControl.State = .normal) -> UIButton {
         self.setTitleColor(c, for: state)
         return self
     }
     
-    func titleFont(_ f: UIFont) -> UIButton {
+    public func titleFont(_ f: UIFont) -> UIButton {
         self.titleLabel?.font = f
         return self
     }
     
-    func selectedStatusEnable() -> UIButton {
+    public func selectedStatusEnable() -> UIButton {
         self.rx.tap.subscribe{_ in
             self.isSelected = !self.isSelected
         }.disposed(by: self.bag)
@@ -112,7 +112,7 @@ extension UIButton {
 //    }
     
     
-    static func ImageTitleButton(image:String,title:String) -> UIButton {
+    public static func ImageTitleButton(image:String,title:String) -> UIButton {
         let btn = UIButton.defaultBtn()
         btn.setImage(UIImage.init(named: image), for: .normal)
         btn.setTitle(title, for: .normal)
@@ -146,7 +146,7 @@ extension UIButton {
 //    //禁用
 //
     //多了选中状态图
-    static func selectedImageButton(_ image:String,selectedImage:String) -> UIButton {
+    public static func selectedImageButton(_ image:String,selectedImage:String) -> UIButton {
         let btn = UIButton.imageButton(image)
         btn.setImage(UIImage.init(named: selectedImage), for: .selected)
         btn.rx.tap.subscribe { (_) in
@@ -168,7 +168,7 @@ extension UIButton {
 //    }
     
 //调整按钮图片比例位置。不好用
-        func set(image anImage: UIImage?, title: String,
+       public func set(image anImage: UIImage?, title: String,
                    titlePosition: UIView.ContentMode, additionalSpacing: CGFloat, state: UIControl.State){
         self.imageView?.contentMode = .center
         self.setImage(anImage, for: state)
@@ -307,13 +307,13 @@ extension UIButton {
 
 
 
-extension Reactive where Base: UIButton {
+public extension Reactive where Base: UIButton {
     
 
-    var selectTap: Observable<Bool> {
+    public var selectTap: Observable<Bool> {
         return base.rx.tap.map{ self.base.isSelected }
     }
-    func longTap(minTime: TimeInterval) {
+    public func longTap(minTime: TimeInterval) {
         let pub = PublishSubject<Int>.init()
         var now: Date?
         

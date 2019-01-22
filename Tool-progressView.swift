@@ -7,17 +7,17 @@
 //
 
 import Foundation
-import UIKit
+
 public protocol ProgressAnimation {
-    var interval: TimeInterval { get }
-    var total: Double { get }
-    func animation(progress: @escaping () -> CGFloat, until: @escaping  () -> Bool,completion: @escaping VoidHandler)
+    public var interval: TimeInterval { get }
+    public var total: Double { get }
+    public func animation(progress: @escaping () -> CGFloat, until: @escaping  () -> Bool,completion: @escaping VoidHandler)
 }
 
 public class Lf_progressView: UIView, ProgressAnimation {
-    public var total: Double = 1
+    var total: Double = 1
     
-    public var interval: TimeInterval = 0.01
+    var interval: TimeInterval = 0.01
     
     public func animation(progress: @escaping () -> CGFloat, until: @escaping () -> Bool, completion: @escaping VoidHandler) {
         TimeTool.act(startWith: 0, interval: interval, timeHandler: { (_) in
@@ -45,7 +45,7 @@ public class Lf_progressView: UIView, ProgressAnimation {
     public var progressColor = UIColor.clear
     
     
-    override public func draw(_ rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let ww = bounds.width
         let hh = bounds.height

@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import UIKit
-extension UIScrollView {
+
+public extension UIScrollView {
     
-    func show(images: [String]) {
+    public func show(images: [String]) {
         let count = images.count
         let ww = self.bounds.width
         let hh = bounds.height
@@ -30,7 +30,7 @@ print(self)
 
     }
     
-    func endHandler(_ r :@escaping VoidHandler) {
+    public func endHandler(_ r :@escaping VoidHandler) {
         self.rx.contentOffset.subscribe(onNext: {
             if $0.x == self.contentSize.width - self.bounds.width {
                 r()

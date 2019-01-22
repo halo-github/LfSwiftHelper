@@ -27,7 +27,7 @@ import SnapKit
 
 
 
-struct LayoutStruct {
+public struct LayoutStruct {
     var target:targetConstrainType
     var vertical:CGFloat
     var horizon:CGFloat
@@ -35,7 +35,7 @@ struct LayoutStruct {
     var height:CGFloat
 
 }
-enum targetConstrainType {
+public enum targetConstrainType {
     case horizon(to:UIView)
     case vertical(to:UIView)
     case superview(view:UIView)
@@ -44,21 +44,21 @@ enum targetConstrainType {
 
 
 
-enum TargetViewType {
-    enum HorizonAlign {
+public enum TargetViewType {
+    public enum HorizonAlign {
         case left,right,center
     }
-    enum VerticalAlign {
+    public enum VerticalAlign {
         case top,bottom,center
     }
-    enum HorizonDirection {
+    public enum HorizonDirection {
         case left(ConstraintRelatableTarget)
         case right(ConstraintRelatableTarget)
         case center(multipliedBy:CGFloat)
         case divide(divided: Int, index: Int)
         case align(HorizonAlign)
     }
-    enum VerticalDrection {
+    public enum VerticalDrection {
         case top(ConstraintRelatableTarget)
         case bottom(ConstraintRelatableTarget)
         case center(multipliedBy:CGFloat)
@@ -76,7 +76,7 @@ enum TargetViewType {
 
 
 //MARK:- snp 的封装
-extension UIView{
+public extension UIView{
 
 //约束的时候统一使用left,top,width,height，以根据屏幕宽度适配机型
 //iPhone X 额外判断
@@ -111,7 +111,7 @@ extension UIView{
     
     //视图在同一父视图上两个子视图之间居中
     //X轴
-    func lf_horizon_center(view1: UIView,view2: UIView,width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_horizon_center(view1: UIView,view2: UIView,width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         guard view1.superview == view2.superview else {
             return
         }
@@ -130,7 +130,7 @@ extension UIView{
     }
     
     //Y轴
-    func lf_vertical_center(view1: UIView,view2: UIView,width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_vertical_center(view1: UIView,view2: UIView,width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         guard view1.superview == view2.superview else {
             return
         }
@@ -152,7 +152,7 @@ extension UIView{
     
     
     // 父视图左上约束
-    func lf_super_left(_ sup:UIView, top:ConstraintRelatableTarget, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_super_left(_ sup:UIView, top:ConstraintRelatableTarget, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sup,
                        vertical: .sup_vertical(v: .top(top)),
                        horizon: .sup_horizon(h: .left(left)),
@@ -160,7 +160,7 @@ extension UIView{
                        height: height)
     }
     //父视图右上约束
-    func lf_super_right(_ sup:UIView, top:ConstraintRelatableTarget, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_super_right(_ sup:UIView, top:ConstraintRelatableTarget, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sup,
                             vertical: .sup_vertical(v: .top(top)),
                             horizon: .sup_horizon(h: .right(right)),
@@ -168,7 +168,7 @@ extension UIView{
                             height: height)
     }
     //父视图水平居中，顶约束
-    func lf_super_centerX(_ sup:UIView, top:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_super_centerX(_ sup:UIView, top:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sup,
                        vertical: .sup_vertical(v: .top(top)),
                        horizon: .sup_horizon(h: .align(.center)),
@@ -176,15 +176,15 @@ extension UIView{
                        height: height)
     }
     //父视图居中对齐，左约束
-    func lf_sup_centerY(_ sup:UIView, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget)  {
+    public func lf_sup_centerY(_ sup:UIView, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget)  {
         self.lf_layout(view: sup, vertical: .sup_vertical(v: .align(.center)), horizon: .sup_horizon(h: .left(left)), width: width, height: height)
     }
     //父视图居中对齐，右约束
-    func lf_sup_centerY(_ sup:UIView, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget)  {
+    public func lf_sup_centerY(_ sup:UIView, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget)  {
         self.lf_layout(view: sup, vertical: .sup_vertical(v: .align(.center)), horizon: .sup_horizon(h: .right(right)), width: width, height: height)
     }
     //子视图居中对齐，左约束
-    func lf_sub_centerY(_ sub:UIView, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_sub_centerY(_ sub:UIView, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .align(.center)),
                        horizon: .sub_horizon(h: .left(left)),
@@ -192,7 +192,7 @@ extension UIView{
                        height: height)
     }
     //子视图中心水平对齐
-    func lf_sub_centerY(_ sub:UIView, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_sub_centerY(_ sub:UIView, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .align(.center)),
                        horizon: .sub_horizon(h: .right(right)),
@@ -200,7 +200,7 @@ extension UIView{
                        height: height)
     }
     //子视图中心水平对齐
-    func lf_sub_centerY(_ sub:UIView, sup_right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_sub_centerY(_ sub:UIView, sup_right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .align(.center)),
                        horizon: .sup_horizon(h: .right(sup_right)),
@@ -210,7 +210,7 @@ extension UIView{
     
     
     //子视图垂直对齐
-    func lf_sub_left(_ sub:UIView, top:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_sub_left(_ sub:UIView, top:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .top(top)),
                        horizon: .sub_horizon(h: .align(.left)),
@@ -218,7 +218,7 @@ extension UIView{
                        height: height)
     }
     // 子视图底部对父视图，左约束
-    func lf_sup_bottom(_ sup:UIView, bottom:ConstraintRelatableTarget, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_bottom(_ sup:UIView, bottom:ConstraintRelatableTarget, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sup,
                        vertical: .sup_vertical(v: .bottom(bottom)),
                        horizon: .sup_horizon(h: .left(left)),
@@ -226,19 +226,19 @@ extension UIView{
     }
     
     // 子视图底部对父视图,右约束
-    func lf_sup_bottom(_ sup:UIView, bottom:ConstraintRelatableTarget, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_bottom(_ sup:UIView, bottom:ConstraintRelatableTarget, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sup,
                        vertical: .sup_vertical(v: .bottom(bottom)),
                        horizon: .sup_horizon(h: .right(right)),
                        width: width, height: height)
     }
     //子视图居中，底部约束
-    func lf_sup_bottom_centerX(_ sup:UIView, bottom:ConstraintRelatableTarget,  width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_bottom_centerX(_ sup:UIView, bottom:ConstraintRelatableTarget,  width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sup, vertical: .sup_vertical(v: .bottom(bottom)), horizon: .sup_horizon(h: .align(.center)), width: width, height: height)
     }
     
     //子视图中心垂直对齐
-    func lf_sub_centerX(_ sub:UIView, top:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
+    public func lf_sub_centerX(_ sub:UIView, top:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget ) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .top(top)),     //垂直间隔
                        horizon: .sub_horizon(h: .align(.center)),
@@ -246,14 +246,14 @@ extension UIView{
                        height: height)
     }
     //子视图顶对齐
-    func lf_sub_equal_top(_ sub:UIView, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sub_equal_top(_ sub:UIView, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .align(.top)),
                        horizon: .sub_horizon(h: .left(left)),
                        width: width, height: height)
     }
     
-    func lf_sub_equal_top(_ sub:UIView, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sub_equal_top(_ sub:UIView, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sub,
                        vertical: .sub_vertical(v: .align(.top)),
                        horizon: .sub_horizon(h: .right(right)),
@@ -261,27 +261,27 @@ extension UIView{
     }
     
     //父视图左约束，子视图顶约束
-    func lf_sub_top_sup_left(_ sub:UIView, top:ConstraintRelatableTarget, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sub_top_sup_left(_ sub:UIView, top:ConstraintRelatableTarget, left:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sub, vertical: .sub_vertical(v: .top(top)), horizon: .sup_horizon(h: .left(left)), width: width, height: height)
     }
     //父视图右约束，子视图左约束
-    func lf_sub_top_sup_right(_ sub:UIView, top:ConstraintRelatableTarget, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+   public func lf_sub_top_sup_right(_ sub:UIView, top:ConstraintRelatableTarget, right:ConstraintRelatableTarget, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sub, vertical: .sub_vertical(v: .top(top)), horizon: .sup_horizon(h: .right(right)), width: width, height: height)
     }
     
     //子视图垂直中心对齐，父视图右约束
-    func lf_sub_centerY_super_right(_ sub:UIView, right:ConstraintRelatableTarget,width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+   public func lf_sub_centerY_super_right(_ sub:UIView, right:ConstraintRelatableTarget,width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: sub, vertical: .sub_vertical(v: .align(.center)), horizon: .sup_horizon(h: .right(right)), width: width, height: height)
     }
     //父视图水平等分
-    func lf_sup_multCenterX(_ sup: UIView, top:ConstraintRelatableTarget, multX: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_multCenterX(_ sup: UIView, top:ConstraintRelatableTarget, multX: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         lf_layout(view: sup,
                   vertical: .sup_vertical(v: .top(top)),
                   horizon: .sup_horizon(h: .center(multipliedBy: multX)),
                   width: width, height: height)
     }
     //父视图垂直等分
-    func lf_sup_multCenterY(_ sup: UIView, left:ConstraintRelatableTarget, multipliedBy: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_multCenterY(_ sup: UIView, left:ConstraintRelatableTarget, multipliedBy: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         lf_layout(view: sup,
                   vertical: .sup_vertical(v: .center(multipliedBy: multipliedBy)),
                   horizon: .sup_horizon(h: .left(left)),
@@ -289,34 +289,34 @@ extension UIView{
     }
     
     //Y轴居中，X轴等分
-    func lf_sup_centerY(view:UIView, multX: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_centerY(view:UIView, multX: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: view, vertical: .sup_vertical(v: .align(.center)), horizon: .sup_horizon(h: .center(multipliedBy: multX)), width: width, height: height)
     }
     
     //X轴居中，Y轴等分
-    func lf_sup_centerX(view:UIView, multY: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_centerX(view:UIView, multY: CGFloat, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: view, vertical: .sup_vertical(v: .center(multipliedBy: multY)), horizon: .sub_horizon(h: .align(.center)), width: width, height: height)
     }
     
     // x,y按比例排列
-    func lf_sup_multXY(view:UIView,multY:CGFloat, multX:CGFloat,  width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_multXY(view:UIView,multY:CGFloat, multX:CGFloat,  width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: view, vertical: .sup_vertical(v: .center(multipliedBy: multY)),
                        horizon: .sup_horizon(h: .center(multipliedBy: multX)), width: width, height: height)
     }
     
-    func lf_sup_divideXY(view:UIView,YdividedBy:Int, Yindex:Int, XdividedBy:Int, Xindex: Int, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_divideXY(view:UIView,YdividedBy:Int, Yindex:Int, XdividedBy:Int, Xindex: Int, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: view, vertical: .sup_vertical(v: .divide(divided: YdividedBy, index: Yindex)), horizon: .sup_horizon(h: .divide(divided: XdividedBy, index: Xindex)), width: width, height: height)
     }
     
     //x,y居中
-    func lf_sup_centerXY(view:UIView, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+    public func lf_sup_centerXY(view:UIView, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         self.lf_layout(view: view,
                        vertical: .sup_vertical(v: .align(.center)), horizon: .sup_horizon(h: .align(.center)),
                        width: width, height: height)
     }
     
 
-    func lf_betweenHorizon(leftDireciont: Bool = true ,first: UIView, second: ConstraintRelatableTarget,width: ConstraintRelatableTarget,height: ConstraintRelatableTarget)  {
+    public func lf_betweenHorizon(leftDireciont: Bool = true ,first: UIView, second: ConstraintRelatableTarget,width: ConstraintRelatableTarget,height: ConstraintRelatableTarget)  {
         let sup = first.superview
         sup?.layoutIfNeeded()
         sup?.addSubview(self)
@@ -344,7 +344,7 @@ extension UIView{
     
 
 //    主要是提供一个水平约束和一个垂直约束，并区别对待父视图和子视图，各种对齐方式
-    func lf_layout(view:UIView, vertical:TargetViewType, horizon:TargetViewType, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
+   public func lf_layout(view:UIView, vertical:TargetViewType, horizon:TargetViewType, width:ConstraintRelatableTarget, height:ConstraintRelatableTarget) {
         if case TargetViewType.sub_horizon(_) = horizon {               //模式匹配 if case let
             guard let sup = view.superview else {return}
             sup.addSubview(self)

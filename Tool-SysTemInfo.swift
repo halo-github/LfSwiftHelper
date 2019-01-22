@@ -9,7 +9,6 @@
 import Foundation
 import CommonCrypto    
 import SystemConfiguration.CaptiveNetwork
-import UIKit
 public class LF_Info {
     public static let regionCode = NSLocale.current.regionCode!                      //手机设置的国家代号
     public static let langCode = NSLocale.current.languageCode!                           //本地语言

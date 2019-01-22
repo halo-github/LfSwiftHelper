@@ -68,7 +68,7 @@ public class lf_VideoView: UIView {
     }
     
     
-    @objc public func playEnded() {
+   public @objc func playEnded() {
         times = times + 1
         if times != repeatTimes {
             player?.seek(to: CMTime.init(value: 0, timescale: 1))

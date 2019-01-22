@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import UIKit
-extension UIImage {
-    static func image(rect:CGRect,color:UIColor) -> UIImage{
+public extension UIImage {
+    public static func image(rect:CGRect,color:UIColor) -> UIImage{
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
         context?.setFillColor(color.cgColor)
@@ -18,7 +17,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image!
     }
-    static func image(text: NSString,font: UIFont) -> UIImage {
+    public static func image(text: NSString,font: UIFont) -> UIImage {
         let size = text.size(withAttributes: [NSAttributedString.Key.font:font])
         let size1 = CGSize.init(width: size.width, height: 20)
         
@@ -29,7 +28,7 @@ extension UIImage {
         return image!
     }
     
-    static func resize(imageName:String, size:CGSize) -> UIImage {
+    public static func resize(imageName:String, size:CGSize) -> UIImage {
         let img = UIImage.init(named: imageName)
         UIGraphicsBeginImageContextWithOptions(size, false, 1)
         img?.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
@@ -37,11 +36,11 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return newImg!
     }
-    static func defaultNaviBackImage ( ) -> UIImage {
+    public static func defaultNaviBackImage ( ) -> UIImage {
         return UIImage.image(rect: CGRect.init(x: 0, y: -44, width: MAINWIDTH, height: 100), color: UIColor.white)
     }
     
-     func image(newRect: CGRect) -> UIImage {
+     public func image(newRect: CGRect) -> UIImage {
         let cgImage = self.cgImage
         let newCGImage = cgImage?.cropping(to: newRect)
         return UIImage.init(cgImage: newCGImage!, scale: UIScreen.main.scale, orientation: .up)

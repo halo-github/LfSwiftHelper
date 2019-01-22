@@ -265,7 +265,7 @@ public extension UIView {
     }
    
     
-      @objc public func removeWithSuperView() {
+     public @objc public func removeWithSuperView() {
         if let sup = self.superview  {
             if  sup.subviews.count == 1 {
                     sup.removeFromSuperview()
