@@ -7,8 +7,10 @@
 //
 
 import Foundation
-extension UIWindow {
-    static func topViewController() -> UIViewController? {
+import UIKit
+import MBProgressHUD
+public extension UIWindow {
+    public static func topViewController() -> UIViewController? {
         var top = UIApplication.shared.delegate?.window??.rootViewController
         //        var top = root
         while  top?.presentedViewController != nil  {
@@ -18,7 +20,7 @@ extension UIWindow {
         return top
     }
     //自定义
-    static func  remideView(_ v: UIView, tapSpaceRemoveEnabled: Bool = true) -> UIView{
+    public static func  remideView(_ v: UIView, tapSpaceRemoveEnabled: Bool = true) -> UIView{
         let back = UIView.color(UIColor.black.withAlphaComponent(0.5))
         DispatchQueue.main.async {
             if let window = UIApplication.shared.keyWindow {
@@ -38,17 +40,17 @@ extension UIWindow {
     
     
     //MARK:- HUD
-    static func defaultWindow() -> UIWindow? {
+    public static func defaultWindow() -> UIWindow? {
         return UIApplication.shared.keyWindow
     }
     
-    static func progress(on: UIView, block: @escaping (MBProgressHUD) -> Void){
+    public static func progress(on: UIView, block: @escaping (MBProgressHUD) -> Void){
         let hud = MBProgressHUD.showAdded(to: on, animated: true)
         hud.mode = .determinate
         block(hud)
     }
     
-    static func remind(_ r:String, delay: TimeInterval = 1) {
+    public static func remind(_ r:String, delay: TimeInterval = 1) {
         DispatchQueue.main.async {
             if let window = UIApplication.shared.keyWindow {
                 let hud = MBProgressHUD.showAdded(to: window, animated: true)
@@ -64,7 +66,7 @@ extension UIWindow {
         
     }
     
-    static func showActivityIndicator(){
+    public static func showActivityIndicator(){
         DispatchQueue.main.async {
             if let window = UIApplication.shared.keyWindow {
                 let hud = MBProgressHUD.showAdded(to: window, animated: true)
@@ -73,7 +75,7 @@ extension UIWindow {
                 
             }}}
     
-    static func hideActivityIndicator(){
+    public static func hideActivityIndicator(){
         DispatchQueue.main.async {
             if let window = UIApplication.shared.keyWindow {
                 if let hud = window.viewWithTag(10086) {
@@ -84,7 +86,7 @@ extension UIWindow {
     }
     
     
-    static func customHUD(withView:UIView) -> MBProgressHUD? {
+    public static func customHUD(withView:UIView) -> MBProgressHUD? {
         if let window = UIApplication.shared.keyWindow {
             let hud = MBProgressHUD.showAdded(to: window, animated: true)
             //                hud.bezelView.isHidden = true
@@ -138,11 +140,11 @@ extension UIWindow {
 //    }
     
     
-    static func undoneRemind() {
+    public static func undoneRemind() {
         self.remind("持续开发中......")
     }
     
-    static func Alert(title:String,msg: String = "",okHandle:(() ->Void)?) ->Void {
+    public static func Alert(title:String,msg: String = "",okHandle:(() ->Void)?) ->Void {
         let alert:UIAlertController = UIAlertController.init(title: title, message: msg, preferredStyle: .alert)
         let cancle:UIAlertAction = UIAlertAction.init(title:  okHandle == nil ? "确定" : "取消", style: .cancel, handler: nil)
         

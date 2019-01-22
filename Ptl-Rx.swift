@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-protocol RXProtocol {
+public protocol RXProtocol {
     associatedtype Input
     associatedtype Output
     
@@ -20,13 +20,13 @@ protocol RXProtocol {
 
 //
 let BASEURL = "https://image.baidu.com/search/acjson"
-protocol Lf_RxNetProtocol: RXProtocol where Output == PublishSubject<[String : Any]>, Input == [String : String] {
+public protocol Lf_RxNetProtocol: RXProtocol where Output == PublishSubject<[String : Any]>, Input == [String : String] {
     
     
 }
 
-extension Lf_RxNetProtocol {
-    func netPost(url: URL, paras: [String: String]) {
+public extension Lf_RxNetProtocol {
+    public func netPost(url: URL, paras: [String: String]) {
         
         var request = URLRequest.init(url: url)
             request.httpMethod = "POST"
@@ -37,7 +37,7 @@ extension Lf_RxNetProtocol {
     
 }
 
-func dicToHttpBody(dic: [String: String]) -> String{
+public func dicToHttpBody(dic: [String: String]) -> String{
     return dic.map{"\($0)=\($1)"}.joined(separator: "&")
 }
 

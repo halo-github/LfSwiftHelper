@@ -8,8 +8,8 @@
 
 import Foundation
 
-class JsonTool {
-    static func json(fileName: String, type: String) -> [String: Any]? {
+public class JsonTool {
+    public static func json(fileName: String, type: String) -> [String: Any]? {
         if  let path = Bundle.main.path(forResource: fileName, ofType: type) {
             if let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: path)) {
                 if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
@@ -25,8 +25,8 @@ class JsonTool {
 //    }
 }
 
-extension Dictionary where Key == String {
-    func dic(_ k:String) -> [String: Any]? {
+public extension Dictionary where Key == String {
+    public func dic(_ k:String) -> [String: Any]? {
         if let dic = self[k] as? [String: Any] {
             return dic
         }
@@ -34,8 +34,8 @@ extension Dictionary where Key == String {
     }
 }
 
-extension Array where Element == [String: AnyObject] {
-    func  arr(idx:Int) -> [String: Any] {
+public extension Array where Element == [String: AnyObject] {
+    public func  arr(idx:Int) -> [String: Any] {
         return self[idx]
     }
 }

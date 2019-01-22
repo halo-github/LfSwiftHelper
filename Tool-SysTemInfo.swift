@@ -9,18 +9,19 @@
 import Foundation
 import CommonCrypto    
 import SystemConfiguration.CaptiveNetwork
-class LF_Info {
-    static let regionCode = NSLocale.current.regionCode!                      //手机设置的国家代号
-    static let langCode = NSLocale.current.languageCode!                           //本地语言
-    static let uuidStr = UIDevice.current.identifierForVendor?.uuidString          //手机uuid
-    static let model = UIDevice.current.model                                      //iPhone，iPad。。。
+import UIKit
+public class LF_Info {
+    public static let regionCode = NSLocale.current.regionCode!                      //手机设置的国家代号
+    public static let langCode = NSLocale.current.languageCode!                           //本地语言
+    public static let uuidStr = UIDevice.current.identifierForVendor?.uuidString          //手机uuid
+    public static let model = UIDevice.current.model                                      //iPhone，iPad。。。
 //    static let localModel = UIDevice.current.localizedModel
-    static let screenScale = UIScreen.main.scale
-    static let systemVersion = UIDevice.current.systemVersion   // 版本号
+    public static let screenScale = UIScreen.main.scale
+    public static let systemVersion = UIDevice.current.systemVersion   // 版本号
     
     //网络信息：网关，ssid（wifi名称）
     
-    static func wifiSSID() -> String{
+    public static func wifiSSID() -> String{
 
         var wifi: String = ""
         //网关数组

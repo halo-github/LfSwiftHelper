@@ -7,19 +7,19 @@
 //
 
 import Foundation
-
-protocol ProgressAnimation {
+import UIKit
+public protocol ProgressAnimation {
     var interval: TimeInterval { get }
     var total: Double { get }
     func animation(progress: @escaping () -> CGFloat, until: @escaping  () -> Bool,completion: @escaping VoidHandler)
 }
 
-class Lf_progressView: UIView, ProgressAnimation {
-    var total: Double = 1
+public class Lf_progressView: UIView, ProgressAnimation {
+    public var total: Double = 1
     
-    var interval: TimeInterval = 0.01
+    public var interval: TimeInterval = 0.01
     
-    func animation(progress: @escaping () -> CGFloat, until: @escaping () -> Bool, completion: @escaping VoidHandler) {
+    public func animation(progress: @escaping () -> CGFloat, until: @escaping () -> Bool, completion: @escaping VoidHandler) {
         TimeTool.act(startWith: 0, interval: interval, timeHandler: { (_) in
            self.progressValue = progress()
         }, waitStop: { (_) -> Bool in
@@ -32,20 +32,20 @@ class Lf_progressView: UIView, ProgressAnimation {
     
     
     
-    var shape: CAShapeLayer?
+    public var shape: CAShapeLayer?
     
-    var progressValue: CGFloat = 0 {
+    public var progressValue: CGFloat = 0 {
         willSet {
             self.setNeedsDisplay()
             
         }
     }
-    var backColor: UIColor?
-    var shapeColor: UIColor = .clear
-    var progressColor = UIColor.clear
+    public var backColor: UIColor?
+    public var shapeColor: UIColor = .clear
+    public var progressColor = UIColor.clear
     
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         
         let ww = bounds.width
         let hh = bounds.height

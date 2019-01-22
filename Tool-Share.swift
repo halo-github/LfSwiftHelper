@@ -56,7 +56,7 @@
 */
 import Social
 import Foundation
-enum Lf_sharePlatform: String {
+public enum Lf_sharePlatform: String {
     case wx = "com.tencent.xin.sharetimeline"
     case sina = "com.apple.share.SinaWeibo.post"
     case qq = "com.tencent.mqq.ShareExtension"
@@ -64,12 +64,12 @@ enum Lf_sharePlatform: String {
 
 
 
-class Lf_ShareTool {
+public class Lf_ShareTool {
     static func shareVC(type: Lf_sharePlatform) -> SLComposeViewController {
         return  SLComposeViewController.init(forServiceType: type.rawValue)
     }
     
-    static func appleShare(items: [Any],completion: @escaping UIActivityViewController.CompletionWithItemsHandler){
+    public static func appleShare(items: [Any],completion: @escaping UIActivityViewController.CompletionWithItemsHandler){
         DispatchQueue.main.async {
             let activityVC = UIActivityViewController.init(activityItems: items, applicationActivities: nil)
             

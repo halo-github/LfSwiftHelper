@@ -9,8 +9,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
-extension URLRequest {
-    mutating func addBody(paras:[String: Any]) {
+public extension URLRequest {
+    public mutating func addBody(paras:[String: Any]) {
         if let data = try? JSONSerialization.data(withJSONObject: paras, options: []) {
         self.httpBody = data
         self.httpMethod = "POST"
@@ -22,8 +22,8 @@ extension URLRequest {
 
 
 
-extension ControlEvent  {
-    func requestJson(_ r:@escaping ()->URLRequest,completion: @escaping AnyHandler, bag: DisposeBag) {
+public extension ControlEvent  {
+    public func requestJson(_ r:@escaping ()->URLRequest,completion: @escaping AnyHandler, bag: DisposeBag) {
         self.subscribe{_ in
             URLSession.shared.rx.json(request: r()).subscribe(onNext: { (json) in
                 completion(json)

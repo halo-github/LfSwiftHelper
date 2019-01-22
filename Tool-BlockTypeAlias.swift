@@ -7,8 +7,9 @@
 //
 
 import Foundation
-typealias VoidHandler = ()->Void
-typealias ImageHandler = (_ image: UIImage) -> Void
-typealias VideoHandler = (_ url: URL) -> Void
-typealias AnyHandler = (Any) -> Void
-typealias ErrorHandler = VoidHandler
+import UIKit
+public typealias VoidHandler = ()->Void
+public typealias ImageHandler = (_ image: UIImage) -> Void
+public typealias VideoHandler = (_ url: URL) -> Void
+public typealias AnyHandler = (Any) -> Void
+public typealias ErrorHandler = VoidHandler

@@ -10,8 +10,8 @@ import Foundation
 import AVFoundation
 import RxCocoa
 import RxSwift
-class H264Writer: AVAssetWriter, H264WriteDelegate {
-    func write(sample: CMSampleBuffer) {
+public class H264Writer: AVAssetWriter, H264WriteDelegate {
+    public func write(sample: CMSampleBuffer) {
         print(self.status.rawValue)
 //        if CMSampleBufferDataIsReady(sample) == false {
 //            print("not ready")
@@ -35,9 +35,9 @@ class H264Writer: AVAssetWriter, H264WriteDelegate {
         
     }
     
-    var writerInput: AVAssetWriterInput?
+    public var writerInput: AVAssetWriterInput?
     
-    func addH264Input(w:Int, h: Int){
+    public func addH264Input(w:Int, h: Int){
         let setting = [AVVideoCodecKey: AVVideoCodecH264, AVVideoWidthKey: w, AVVideoHeightKey: h] as [String : Any]
         self.writerInput = AVAssetWriterInput.init(mediaType: .video, outputSettings: setting)
         self.writerInput?.expectsMediaDataInRealTime = true

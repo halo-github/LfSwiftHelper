@@ -12,13 +12,13 @@ import AVKit
 import RxCocoa
 //import
 
-class MediaTool {
-    static func playAudio(sound: SystemSound){
+public class MediaTool {
+    public static func playAudio(sound: SystemSound){
         AudioServicesPlaySystemSound(SystemSoundID(sound.rawValue))
     }
 }
 
-enum SystemSound: SystemSoundID {
+public enum SystemSound: SystemSoundID {
     case takePhoto = 1108   //拍照
     case vibrate =  0x00000FFF //  震动  kSystemSoundID_Vibrate 
 }
@@ -31,8 +31,8 @@ enum SystemSound: SystemSoundID {
  */
 
 
-class lf_VideoView: UIView {
-    override init(frame: CGRect) {
+public class lf_VideoView: UIView {
+   public override init(frame: CGRect) {
         super.init(frame: frame)
         NotificationCenter.default.addObserver(self, selector: #selector(playEnded), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
     }
@@ -40,14 +40,14 @@ class lf_VideoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func mp4(frame: CGRect, url: URL) -> lf_VideoView {
+    public static func mp4(frame: CGRect, url: URL) -> lf_VideoView {
         let view = lf_VideoView.init(frame: frame)
             view.videoUrl = url
         return view
     }
-    var player: AVPlayer?
-    let avLayer = AVPlayerLayer()
-    var videoUrl: URL = URL.init(string: "abc")! {
+    public var player: AVPlayer?
+    public let avLayer = AVPlayerLayer()
+    public var videoUrl: URL = URL.init(string: "abc")! {
         willSet {
             player =  AVPlayer.init(url: newValue)
                 avLayer.frame = self.bounds
@@ -68,7 +68,7 @@ class lf_VideoView: UIView {
     }
     
     
-    @objc func playEnded() {
+    @objc public func playEnded() {
         times = times + 1
         if times != repeatTimes {
             player?.seek(to: CMTime.init(value: 0, timescale: 1))

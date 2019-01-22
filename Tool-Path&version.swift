@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-let libPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
+public let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+public let libPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
 
 
-let bundleVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-func appStoreVersion(ID: String, updateHandler: @escaping (Bool) -> Void ){    
-    let url = URL.init(string: "http://itunes.apple.com/lookup?id=\(appID)")
+public let bundleVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+public func appStoreVersion(ID: String, updateHandler: @escaping (Bool) -> Void ){    
+    let url = URL.init(string: "http://itunes.apple.com/lookup?id=\(ID)")
     let request = NSMutableURLRequest.init(url: url!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
         request.httpMethod = "POST"
         URLSession.shared.dataTask(with: request as URLRequest) { data, response, err in

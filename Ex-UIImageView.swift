@@ -84,7 +84,7 @@ class SwipeImageView: UIImageView {
     func endHandler(_ r :@escaping VoidHandler) {
         
     }
-    @objc func swipeLeft() {
+    @objc public func swipeLeft() {
 //      self.contentMode = .scaleAspectFit
 //        let ani = CATransition.init()
 //        ani.duration = 0.5
@@ -113,7 +113,7 @@ class SwipeImageView: UIImageView {
         }
     }
     
-    @objc func swipeRight() {
+    @objc public func swipeRight() {
         if currentIdx == 0 { return}
         let ani = CATransition.init()
         ani.duration = 0.5

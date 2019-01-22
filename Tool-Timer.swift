@@ -6,13 +6,13 @@
 //  Copyright © 2018年 liufeng. All rights reserved.
 //
 
-typealias IntHandler = (Int)->Void
-typealias DoubleHandler = (Double)->Void
+public typealias IntHandler = (Int)->Void
+public typealias DoubleHandler = (Double)->Void
 
 import Foundation
 
-class TimeTool {
-    static func act(prepare: VoidHandler,times: Int, interval: TimeInterval = 1, timeHandler: @escaping DoubleHandler, completion: @escaping VoidHandler){
+public class TimeTool {
+    public static func act(prepare: VoidHandler,times: Int, interval: TimeInterval = 1, timeHandler: @escaping DoubleHandler, completion: @escaping VoidHandler){
         prepare()
         var count = times
         let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -32,7 +32,7 @@ class TimeTool {
             completion()
         }
     }
-    static func repeatForever(interval: TimeInterval = 1, _ h: @escaping VoidHandler) {
+    public static func repeatForever(interval: TimeInterval = 1, _ h: @escaping VoidHandler) {
         self.act(startWith: 0, interval: interval, timeHandler: { (_) in
             h()
         }, waitStop: { _  -> Bool in
@@ -42,7 +42,7 @@ class TimeTool {
         }
     }
     
-    static func act(startWith: Double, interval: TimeInterval = 1, timeHandler: @escaping DoubleHandler, waitStop:@escaping (Double)->Bool,completion: @escaping VoidHandler){
+    public static func act(startWith: Double, interval: TimeInterval = 1, timeHandler: @escaping DoubleHandler, waitStop:@escaping (Double)->Bool,completion: @escaping VoidHandler){
         
         var start = startWith
         let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -62,7 +62,7 @@ class TimeTool {
         timer.resume()
     }
     
-    static func secondToHMS(sec: Int) -> [String] {
+    public static func secondToHMS(sec: Int) -> [String] {
         let hours = sec / 3600
         let minsLeft = sec % 3600
         let mins = minsLeft / 60

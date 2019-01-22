@@ -17,9 +17,9 @@ import Photos
 //import RxCocoa
 //import RxSwift
 import CoreGraphics
-let appName: String = Bundle.main.infoDictionary![String(kCFBundleNameKey)] as! String
+public let appName: String = Bundle.main.infoDictionary![String(kCFBundleNameKey)] as! String
 
-class PhotoManager: NSObject {
+public class PhotoManager: NSObject {
 //    let bag = DisposeBag()
     static let shared = PhotoManager()
     
@@ -28,7 +28,7 @@ class PhotoManager: NSObject {
     ///
     /// - Parameter title:
     /// - Returns: 
-    func Ablum(title: String) -> PHAssetCollection? {
+    public func Ablum(title: String) -> PHAssetCollection? {
         let options = PHFetchOptions()
 //        options.predicate = NSPredicate.init(format: title, [:])
         let result = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
@@ -54,7 +54,7 @@ class PhotoManager: NSObject {
         return ablum as! PHAssetCollection
     }
     
-    func remove(assets: [PHAsset],completion:@escaping (Bool,Error?)->Void)  {
+    public func remove(assets: [PHAsset],completion:@escaping (Bool,Error?)->Void)  {
         
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.deleteAssets(assets as NSArray)
@@ -81,7 +81,7 @@ class PhotoManager: NSObject {
 //
 //    }
     
-    func saveImage(_ image: UIImage, toAlbum: String ) {
+    public func saveImage(_ image: UIImage, toAlbum: String ) {
         PhotoManager.checkAuthorize {
             let collection = self.Ablum(title: toAlbum)
             //        var assertRequest: PHAssetChangeRequest?
@@ -98,7 +98,7 @@ class PhotoManager: NSObject {
         
     }
     
-    func addRequest(_ r: PHAssetChangeRequest, toAlbum: String) {
+    public func addRequest(_ r: PHAssetChangeRequest, toAlbum: String) {
         do {
             try PHPhotoLibrary.shared().performChangesAndWait({
 //                let assertRequest  = PHAssetChangeRequest.crea
@@ -113,7 +113,7 @@ class PhotoManager: NSObject {
     }
     
     
-    func cgImage(rgbData: UnsafeRawPointer,w: Int32, h: Int32) -> CGImage {
+    public func cgImage(rgbData: UnsafeRawPointer,w: Int32, h: Int32) -> CGImage {
         let callback: CGDataProviderReleaseDataCallback = {_,_,_ in}
 
         let provider = CGDataProvider.init(dataInfo: nil, data: rgbData, size: Int(3 * w * h), releaseData: callback)        
@@ -136,7 +136,7 @@ class PhotoManager: NSObject {
     ///   - s:
     ///   - ascending:
     /// - Returns:
-    func asserts(_ s: String, ascending: Bool = false) -> PHFetchResult<PHAsset> {
+    public func asserts(_ s: String, ascending: Bool = false) -> PHFetchResult<PHAsset> {
         let collection = PhotoManager.shared.Ablum(title: s)
         let option = PHFetchOptions()
             option.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: ascending)]
@@ -144,7 +144,7 @@ class PhotoManager: NSObject {
         return assetsResult
     }
     
-    func assetArray(_ s: String, ascending: Bool = false) -> [PHAsset] {
+    public func assetArray(_ s: String, ascending: Bool = false) -> [PHAsset] {
         var arr = [PHAsset]()
         self.asserts(s, ascending: ascending).enumerateObjects { (asset, _, _) in
             arr.append(asset)
@@ -154,7 +154,7 @@ class PhotoManager: NSObject {
     
 //缩略图
     
-    func findThumbnails(ablum: String) -> [UIImage] {
+    public func findThumbnails(ablum: String) -> [UIImage] {
         var arr = [UIImage]()
         let result = self.asserts(ablum)
         result.enumerateObjects { (asset, idx, _) in
@@ -166,7 +166,7 @@ class PhotoManager: NSObject {
         return arr
     }
     
-    func  handle(ablum: String,imgHandler: @escaping ImageHandler,  videoHandler: @escaping VideoHandler)  {
+    public func  handle(ablum: String,imgHandler: @escaping ImageHandler,  videoHandler: @escaping VideoHandler)  {
         let result = self.asserts(ablum)
         
         result.enumerateObjects { (asset, _, _) in
@@ -193,7 +193,7 @@ class PhotoManager: NSObject {
     /// 保存视频
     ///
     /// - Parameter path: 沙盒路径
-    func saveVideo(path: String) {
+    public func saveVideo(path: String) {
         PhotoManager.checkAuthorize {
             if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(path){
                 let ablum = self.Ablum(title: appName)
@@ -214,7 +214,7 @@ class PhotoManager: NSObject {
         
     }
     
-    @objc func save( video: String ) {
+     @objc public func save( video: String ) {
 //        let urlAsset = AVURLAsset.init(url: URL.init(fileURLWithPath: video))
         try? PHPhotoLibrary.shared().performChangesAndWait {
             let assertRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL.init(fileURLWithPath: video))  //图片请求
@@ -226,7 +226,7 @@ class PhotoManager: NSObject {
     }
     
     
-    static func image(fromSampleBuffer: CMSampleBuffer) -> UIImage?{
+    public static func image(fromSampleBuffer: CMSampleBuffer) -> UIImage?{
         //pixelBuffer
         guard let imageBuffer = CMSampleBufferGetImageBuffer(fromSampleBuffer) else {return nil}
         //lockAddress
@@ -254,7 +254,7 @@ class PhotoManager: NSObject {
     }
     
     //获取授权
-    static func checkAuthorize(authorizedHandler:@escaping VoidHandler) {
+    public static func checkAuthorize(authorizedHandler:@escaping VoidHandler) {
     //保证UI在主线程
     if PHPhotoLibrary.authorizationStatus() == .authorized {
         DispatchQueue.main.async {
@@ -275,9 +275,9 @@ class PhotoManager: NSObject {
     
 }
 
-extension PHAssetCollection {
+public extension PHAssetCollection {
 
-    func asset(ID: String) -> PHAsset? {
+    public func asset(ID: String) -> PHAsset? {
         let result = PHAsset.fetchAssets(withLocalIdentifiers: [ID], options: nil)
         return result.firstObject
     }

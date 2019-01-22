@@ -4,7 +4,7 @@
 //
 import UIKit
 import Foundation
-class GifPlayer: UIImageView {
+public class GifPlayer: UIImageView {
 //    static let shared = GifPlayer.init(frame: .zero)
     var images: [UIImage] = [UIImage]()
     var index = 0
@@ -15,7 +15,7 @@ class GifPlayer: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    func add(gif:String, onView:UIView) {
+    public func add(gif:String, onView:UIView) {
         onView.addSubview(self)
         self.frame = onView.bounds
         self.snp.makeConstraints { (make) in
@@ -28,7 +28,7 @@ class GifPlayer: UIImageView {
         self.creat(gif: gif)
     }
     
-    func creat(gif:String) {
+    public func creat(gif:String) {
         images.removeAll()
         totalDuration = 0
         gifName = gif
@@ -52,31 +52,31 @@ class GifPlayer: UIImageView {
     
     
     
-    func playGif(repeats:Int) {
+    public func playGif(repeats:Int) {
         self.animationImages = images
         self.animationDuration = totalDuration
         self.animationRepeatCount = repeats
         self.startAnimating()
     }
-    func stop() {
+    public func stop() {
 //        self.animationImages = []
         self.layer.removeAllAnimations()
         self.stopAnimating()
         self.removeFromSuperview()
     }
     
-    func stopAtLast() {
+    public func stopAtLast() {
         
         self.image = self.animationImages?.last
         self.layer.removeAllAnimations()
         self.stopAnimating()
     }
     
-    func image(indexOf: Int) -> UIImage {
+    public func image(indexOf: Int) -> UIImage {
         return images[indexOf]
     }
     
-    func save(indexOf: Int) {
+    public func save(indexOf: Int) {
         let img = self.image(indexOf: indexOf)
         let data = img.jpegData(compressionQuality: 1)
         let path = "\(docPath!)/\(gifName)_\(indexOf).png"
@@ -84,11 +84,11 @@ class GifPlayer: UIImageView {
         
     }
     
-    static func newGif()-> GifPlayer{
+    public static func newGif()-> GifPlayer{
         let gif = GifPlayer.init(frame: .zero)
         return gif
     }
-     func play(name: String, times: Int,  onView: UIView) {
+     public func play(name: String, times: Int,  onView: UIView) {
 //        let gif = GifPlayer.init(frame: .zero)
             self.add(gif: name, onView: onView)
             self.playGif(repeats: times)

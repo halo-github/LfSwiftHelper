@@ -10,16 +10,16 @@ import Foundation
 import CoreTelephony
 import RxSwift
 import Reachability
-class NetTool {
-    static let shared = NetTool()
+public class NetTool {
+    public static let shared = NetTool()
 //    static let internetOb = Reachability.forInternetConnection()
     
-    var netTasks:[BlockOperation] = [BlockOperation]()
-    var wifiTasks: [BlockOperation] = [BlockOperation]()
+    public var netTasks:[BlockOperation] = [BlockOperation]()
+    public var wifiTasks: [BlockOperation] = [BlockOperation]()
     
-    var semaphore = DispatchSemaphore.init(value: 1)
+    public var semaphore = DispatchSemaphore.init(value: 1)
     
-    static func watchNetAuthorize() {
+    public static func watchNetAuthorize() {
         self.NetworkAuthorizeHandler(resticted: {
             DispatchQueue.main.async {
                 UIWindow.Alert(title: "权限限制", msg: "前往     设置 - \(appName)      选择WLAN与蜂窝移动网络", okHandle: nil)
@@ -32,7 +32,7 @@ class NetTool {
     }
    
     
-      func watchInternetStatus() {
+      public func watchInternetStatus() {
         let reachability = Reachability.forInternetConnection()
         reachability?.reachableBlock = { _  in
             for _ in 0..<self.netTasks.count {
@@ -57,14 +57,14 @@ class NetTool {
         }
     }
     
-    static func checkInternetConnection() -> Int?{
+    public static func checkInternetConnection() -> Int?{
         return Reachability.forInternetConnection()?.currentReachabilityStatus().rawValue
     }
     
     
     
     
-    static func NetworkAuthorizeHandler(resticted: @escaping VoidHandler, notRestricted: @escaping VoidHandler, unKnown: @escaping VoidHandler) {
+    public static func NetworkAuthorizeHandler(resticted: @escaping VoidHandler, notRestricted: @escaping VoidHandler, unKnown: @escaping VoidHandler) {
         let ctData = CTCellularData()
         ctData.cellularDataRestrictionDidUpdateNotifier = { state in
 //            print(" netstate: \(state)")
@@ -87,9 +87,9 @@ class NetTool {
     }
 }
 
-extension URLRequest {
+public extension URLRequest {
     
-    enum RequestMothod: String {
+    public enum RequestMothod: String {
         case get = "GET"
         case post = "POST"
         case put = "PUT"
@@ -97,7 +97,7 @@ extension URLRequest {
         case head = "HEAD"
     }
     
-    static func request(urlStr: String, paras: [String: String]) -> URLRequest{
+    public static func request(urlStr: String, paras: [String: String]) -> URLRequest{
         let body = paras.map{"\($0)=\($1)"}.joined(separator: "&")
         var request = URLRequest.init(url: URL.init(string: urlStr)!)
             request.httpMethod = "POST"
@@ -106,7 +106,7 @@ extension URLRequest {
     }
     
     
-    static func method(_ r: RequestMothod, url: URL, paras: [String: Any] = [:]) -> URLRequest {
+    public static func method(_ r: RequestMothod, url: URL, paras: [String: Any] = [:]) -> URLRequest {
         var request = URLRequest.init(url: url)
             request.httpMethod = r.rawValue
         

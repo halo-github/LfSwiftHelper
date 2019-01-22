@@ -10,8 +10,8 @@ import Foundation
 import RxSwift
 
 
-extension Reactive where Base: URLSession {
-    func waitJson(request: URLRequest, options: JSONSerialization.ReadingOptions = [], jsonHandler: @escaping AnyHandler, errHandler:@escaping VoidHandler = {}, bag:DisposeBag) {
+public extension Reactive where Base: URLSession {
+    public func waitJson(request: URLRequest, options: JSONSerialization.ReadingOptions = [], jsonHandler: @escaping AnyHandler, errHandler:@escaping VoidHandler = {}, bag:DisposeBag) {
         
         self.waitResponse(request: request, dataHandler: { (data) in
             let json =  try? JSONSerialization.jsonObject(with: data, options: options)
@@ -40,7 +40,7 @@ extension Reactive where Base: URLSession {
 //        }).disposed(by: bag)
     }
     
-    func waitResponse(request: URLRequest, dataHandler: @escaping (Data)->Void, errHandler:@escaping VoidHandler = {}, bag:DisposeBag) {
+    public func waitResponse(request: URLRequest, dataHandler: @escaping (Data)->Void, errHandler:@escaping VoidHandler = {}, bag:DisposeBag) {
         UIWindow.showActivityIndicator()
         self.response(request: request).subscribe(onNext: { resp, data  in
             UIWindow.hideActivityIndicator()

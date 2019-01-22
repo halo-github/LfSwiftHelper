@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
+import MBProgressHUD
 //MARK:- Alert
-extension UIAlertController {
-    static func Alert(title:String,msg: String = "",okHandle:(() ->Void)?) ->Void {
+public extension UIAlertController {
+    public static func Alert(title:String,msg: String = "",okHandle:(() ->Void)?) ->Void {
         let alert:UIAlertController = UIAlertController.init(title: title, message: msg, preferredStyle: .alert)
         let cancle:UIAlertAction = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
         let hd:(UIAlertAction)->Void = { _ in
@@ -35,7 +36,7 @@ extension UIAlertController {
 
 
 
-func DEBUGRemind(_ r:String, delay: TimeInterval = 1) {
+public func DEBUGRemind(_ r:String, delay: TimeInterval = 1) {
     #if DEBUG
         UIWindow.remind(r)
     #endif
@@ -58,8 +59,8 @@ func DEBUGRemind(_ r:String, delay: TimeInterval = 1) {
 //    #endif
 //}
 
-extension MBProgressHUD {
-    func hideWhenTapSpace() {
+public extension MBProgressHUD {
+    public func hideWhenTapSpace() {
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.hide(animated:)))
         self.backgroundView.addGestureRecognizer(tap)
         if self.customView != nil {

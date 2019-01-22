@@ -11,8 +11,8 @@ import RxCocoa
 import RxSwift
 
 
-extension Binder {
-    static func bind<T: Comparable>(item1: BehaviorRelay<T>,item2: BehaviorRelay<T>,disposeBy: DisposeBag) {
+public extension Binder {
+    public static func bind<T: Comparable>(item1: BehaviorRelay<T>,item2: BehaviorRelay<T>,disposeBy: DisposeBag) {
         item1.distinctUntilChanged().subscribe(onNext: {
             if $0 != item1.value {
                 item2.accept($0)

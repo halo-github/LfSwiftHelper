@@ -11,8 +11,8 @@ import UIKit
 
 //通过状态栏图标获取网络状态，电池以及相关状态
 
-class LfStatus {
-    static func netStrength() -> Int {
+public class LfStatus {
+    public static func netStrength() -> Int {
 //        if UIApplication.shared.isStatusBarHidden == false { return 0}
         var strength: Int = 0
         let statusBar:UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -50,14 +50,14 @@ class LfStatus {
         return strength      
     }
     
-    static func batteryLevel() -> Int {
+    public static func batteryLevel() -> Int {
         
         UIDevice.current.isBatteryMonitoringEnabled = true
         let level = UIDevice.current.batteryLevel
         return Int(level*100)
     }
     
-    static func foregoundView () -> Any {
+    public static func foregoundView () -> Any {
         var statusBar:UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         if isX == true {
             statusBar = statusBar.value(forKey: "statusBar") as! UIView
@@ -66,7 +66,7 @@ class LfStatus {
         return foregoundView
     }
     
-    func findUIStatusBarWifiSignalView(from: UIView)  {
+    public func findUIStatusBarWifiSignalView(from: UIView)  {
         from.subviews.forEach { (view) in
             findUIStatusBarWifiSignalView(from: view)
         }

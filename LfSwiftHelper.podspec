@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LfSwiftHelper"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "A short description of LfSwiftHelper."
 
   # This description is used to generate tags and improve search results.
@@ -93,19 +93,19 @@ Pod::Spec.new do |s|
 
   s.source_files  = "*.swift"
 
-  s.subspec "Extension" do |ex| 
-	ex.source_files = "**/*.swift"
-  end
+#  s.subspec "Extension" do |ex| 
+#	ex.source_files = "**/*.swift"
+#  end
 
-  s.subspec "Tools" do |tl| 
-	tl.source_files = "**/*.swift"
-  end
-  s.subspec "Protocol" do |pr| 
-	pr.source_files = "**/*.swift"
-  end
+#  s.subspec "Tools" do |tl| 
+#	tl.source_files = "**/*.swift"
+#  end
+#  s.subspec "Protocol" do |pr| 
+#	pr.source_files = "**/*.swift"
+#  end
   #s.exclude_files = "Classes/Exclude"
 
-   s.public_header_files = "./**/*.swift", "*.swift"
+#   s.public_header_files = "*.swift"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

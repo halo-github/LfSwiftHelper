@@ -9,18 +9,20 @@
 import Foundation
 import VideoToolbox
 
+public typealias u8 = UInt8
 
-protocol H264DisplayDelegate {
+
+public protocol H264DisplayDelegate {
     func sampleDisplay(sample: CMSampleBuffer)
     func cvimageDisplay(cvImage: CVImageBuffer)
 }
 
-protocol H264WriteDelegate {
+public protocol H264WriteDelegate {
     func write(sample: CMSampleBuffer)
 }
 
 
-class H264Decoder {
+public class H264Decoder {
     static let shared = H264Decoder()
     var description: CMVideoFormatDescription?
     var session: VTDecompressionSession?
@@ -57,7 +59,7 @@ class H264Decoder {
         }
     }
     
-    func updata(sps: UnsafeMutablePointer<UInt8>, spsLen: Int, pps: UnsafeMutablePointer<UInt8>, ppsLen: Int) -> OSStatus{
+    public func updata(sps: UnsafeMutablePointer<UInt8>, spsLen: Int, pps: UnsafeMutablePointer<UInt8>, ppsLen: Int) -> OSStatus{
         let spsSet = UnsafePointer<UInt8>.init(sps)
         let ppsSet = UnsafePointer<UInt8>.init(pps)
         let paraSets = [spsSet, ppsSet]
@@ -66,7 +68,7 @@ class H264Decoder {
     }
     
     
-    func creatSession() {
+    public func creatSession() {
         var status: OSStatus?
         if self.session != nil {
             VTDecompressionSessionInvalidate(self.session!)
@@ -101,7 +103,7 @@ class H264Decoder {
     }
     
     
-    func classify(frame: UnsafeRawPointer,size: Int){
+    public func classify(frame: UnsafeRawPointer,size: Int){
         var data: UnsafeMutableRawPointer?
 
         if size < 4 {
@@ -147,7 +149,7 @@ class H264Decoder {
     
 
     
-    func decode(dataFrame: UnsafeMutableRawPointer, len: Int){
+    public func decode(dataFrame: UnsafeMutableRawPointer, len: Int){
         var status: OSStatus?
         
         block = nil
@@ -223,8 +225,8 @@ class H264Decoder {
 
 }
 
-extension UnsafeRawPointer {
-    func u8(at: Int) -> CUnsignedChar {
+public extension UnsafeRawPointer {
+    public func u8(at: Int) -> CUnsignedChar {
        return self.advanced(by: at).load(as: CUnsignedChar.self)
     }
 }
